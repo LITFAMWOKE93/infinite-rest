@@ -28,6 +28,27 @@ public class TestBench {
 
         // Print account information for the second account
         account2.accountSummary();
+
+
+        CheckingAccount account = new CheckingAccount("John", "Doe", 12345, 1000.0, 0.02);
+
+        // Print initial account information
+        account.accountSummary();
+
+        // Deposit and withdraw from the account
+        account.deposit(500.0);
+        account.withdrawal(200.0);
+        account.withdrawal(1500.0, account.getOverDraftFee()); // This should trigger the overdraft fee
+
+        // Print updated account information
+        account.accountSummary();
+
+        // Change the interest rate
+        account.setInterestRate(0.03);
+
+        // Print account information again
+        account.accountSummary();
     }
-    
 }
+    
+

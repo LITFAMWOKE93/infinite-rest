@@ -1,5 +1,9 @@
 package accounts.src;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
+
 public class BankingAccount {
 
     private String firstName;
@@ -31,6 +35,7 @@ public class BankingAccount {
             System.out.println("Must deposit a positive value");
         }
         this.balance = this.balance + depositAmount;
+
     }
 
 
@@ -69,6 +74,10 @@ public class BankingAccount {
     public void setID(int ID) {
         this.accountID = ID;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
     
 
     public void accountSummary() {
@@ -77,7 +86,7 @@ public class BankingAccount {
     }
 
    public String toString() {
-        return "First Name: " + this.firstName + "\n" + "Last Name: " + this.lastName + "\n" + "Account ID:" + this.accountID + "\n" + "Balance:" + this.balance;
+        return "First Name: " + this.firstName + "\n" + "Last Name: " + this.lastName + "\n" + "Account ID:" + this.accountID + "\n" + "Balance: $" + this.balance;
     }
 
 
@@ -90,9 +99,14 @@ public class BankingAccount {
 
     public static void main(String[] args) {
 
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        
 
-        BankingAccount acct1 = new BankingAccount("bill", "Sutter", 234, 890.023);
 
+        BankingAccount acct1 = new BankingAccount("bill", "Sutter", 234, 890.23);
+
+        String formattedAmount = currencyFormat.format(acct1.getBalance());
+        System.out.println(formattedAmount);
         acct1.accountSummary();
     
 }
