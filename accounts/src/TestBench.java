@@ -47,7 +47,7 @@ public class TestBench {
         account.setInterestRate(0.03);
 
         // Print account information again
-        account.accountSummary();
+        account.displayAccount();
     }
 }
     

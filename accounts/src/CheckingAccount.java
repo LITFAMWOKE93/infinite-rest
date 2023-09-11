@@ -41,4 +41,9 @@ public class CheckingAccount extends BankingAccount {
     
 
     }
+
+    public void displayAccount() {
+        this.accountSummary();
+        System.out.println("Interest Rate: " + this.interestRate);
+    }
 }
