@@ -16,7 +16,7 @@ public class BankingAccount {
     protected BankingAccount() {
         this.firstName = "John";
         this.lastName = "Doe";
-        this.accountID = 01234;
+        this.accountID = 1234;
         this.balance = 0.00;
     }
 

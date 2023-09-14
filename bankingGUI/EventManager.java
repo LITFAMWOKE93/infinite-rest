@@ -1,5 +1,7 @@
 package bankingGUI;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +24,7 @@ public class EventManager {
             }
         };
     }
+
 
     public ActionListener createWithdrawButtonListener() {
         return new ActionListener() {

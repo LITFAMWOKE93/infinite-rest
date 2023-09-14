@@ -2,12 +2,12 @@ package bankingGUI;
 
 
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.awt.*;
 import accounts.src.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 // the BankGUI class inherits the BankingAccount class in this instance to use all of the previously created methods for handling transactions
@@ -21,10 +21,9 @@ public class BankGUI extends BankingAccount {
     private JPanel panel;
     private JLabel balanceLabel;
     private JLabel acctIDLabel;
-    private JLabel acctName;
+    private JLabel acctNameLabel;
     private JButton depositButton;
     private JButton withdrawButton;
-    private JButton showBalanceButton;
     
 
     public JFrame getFrame() {
@@ -58,12 +57,10 @@ public class BankGUI extends BankingAccount {
         // GBC to apply one a modified instance to each component before adding to panel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(3, 3, 5, 3);
-    
 
 
         // Balance Label
         balanceLabel = new JLabel("Balance: $" + formatCurrency());
-        updateBalanceLabel();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridheight = 1;
@@ -73,7 +70,7 @@ public class BankGUI extends BankingAccount {
         panel.add(balanceLabel, gbc);
 
         // Account ID
-        acctIDLabel = new JLabel("Account ID:" + getID());
+        acctIDLabel = new JLabel("Account ID:" + String.valueOf(getID()));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridheight = 1;
@@ -82,13 +79,16 @@ public class BankGUI extends BankingAccount {
         panel.add(acctIDLabel, gbc);
 
          // Name
-        acctIDLabel = new JLabel("Account Holder:" + getFname() + " " + getLname());
+        acctNameLabel = new JLabel("Account Holder: " + getFname() + " " + getLname());
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 2; 
         gbc.insets = new Insets(10, 50, 5, 50);
-        panel.add(acctIDLabel, gbc);
+        panel.add(acctNameLabel, gbc);
+
+
+
 
 
         //depositButton layout
@@ -98,7 +98,9 @@ public class BankGUI extends BankingAccount {
         gbc.gridheight = 1;
         gbc.gridwidth = 2; 
         depositButton.setBorder(cellBorder);
+        gbc.insets = new Insets(10, 50, 5, 50);
         panel.add(depositButton, gbc);
+
         //withdrawButton layout
         withdrawButton = new JButton("Withdraw");
         gbc.gridx = 3;
@@ -106,13 +108,9 @@ public class BankGUI extends BankingAccount {
         gbc.gridheight = 1;
         gbc.gridwidth = 2; 
         withdrawButton.setBorder(cellBorder);
+        gbc.insets = new Insets(10, 50, 5, 50);
         panel.add(withdrawButton, gbc);
-        // Add buttons to the panel
-        showBalanceButton = new JButton("Show Balance");
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        showBalanceButton.setBorder(cellBorder);
-        panel.add(showBalanceButton);
+
         // Add the panel to the frame
         frame.add(panel);
         // Create eventManager to handle action listeners
@@ -122,17 +120,34 @@ public class BankGUI extends BankingAccount {
         // Add action listeners to buttons using the event manager
         depositButton.addActionListener(eventManager.createDepositButtonListener());
         withdrawButton.addActionListener(eventManager.createWithdrawButtonListener());
-        showBalanceButton.addActionListener(eventManager.createShowBalanceButtonListener());
+
+        // override the windowListener to report final balance
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                displayFinalBalance();
+                System.exit(0); // Exit the application
+            }
+        });
+
+
+        setBalance(promptForBalanceInput());
+        updateBalanceLabel();
 
         // Make the frame visible
         frame.setVisible(true);
     }
 
+    // displayFinalBalance method is invoked during window event to show the last balance before close.
+    public void displayFinalBalance() {
+            JOptionPane.showMessageDialog(frame, "Final Balance: $" + formatCurrency(), "Exit Report", JOptionPane.INFORMATION_MESSAGE);
+        }
+    // updateBalanceLabel formats the currency and is called during ActionEvent to update the balance field
     public void updateBalanceLabel() {
         
         balanceLabel.setText("Balance: $" + formatCurrency());
     }
-
+    // formatCurrency grabs the double value from the Bank Superclass and reformats it
     public String formatCurrency() {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
 
