@@ -13,15 +13,15 @@ public class BankingAccount {
 
     // constructor
 
-    BankingAccount() {
-        this.firstName = "BLANK";
-        this.lastName = "BLANK";
-        this.accountID = 000000;
+    protected BankingAccount() {
+        this.firstName = "John";
+        this.lastName = "Doe";
+        this.accountID = 01234;
         this.balance = 0.00;
     }
 
     //parameterized constructor
-    BankingAccount(String fName, String lName, int ID, double balance) {
+    protected BankingAccount(String fName, String lName, int ID, double balance) {
         this.firstName = fName;
         this.lastName = lName;
         this.accountID = ID;
@@ -33,9 +33,9 @@ public class BankingAccount {
     public void deposit(double depositAmount) {
         if (depositAmount <= 0) {
             System.out.println("Must deposit a positive value");
-        }
+        } else {
         this.balance = this.balance + depositAmount;
-
+        }
     }
 
 
