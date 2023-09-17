@@ -133,7 +133,7 @@ public class BankGUI extends BankingAccount {
 
         setBalance(promptForBalanceInput());
         updateBalanceLabel();
-
+        System.out.println("GUI Constructed");
         // Make the frame visible
         frame.setVisible(true);
     }
