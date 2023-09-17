@@ -1,6 +1,6 @@
 package bagADT;
 
-public interface BagInterface<MyType> {
+public interface BagInterface<T> {
 
 
     // Get number of bag entries
@@ -12,28 +12,30 @@ public interface BagInterface<MyType> {
     public boolean isEmpty();
 
 
+
+
     //Add to bag, boolean return for success
-    public boolean add(MyType newEntry);
+    public boolean add(T newEntry);
 
 
     //remove unspecified entry, or return null
-    public MyType remove();
+    public T remove();
 
     //remove on occurence of a specified entry, if possible
-    public boolean remove(MyType entry);
+    public boolean remove(T entry);
 
     // Remove all from bag
     public void clear();
 
     //Count number of given entry.
     
-    public int getFrequencyOf(MyType entry);
+    public int getFrequencyOf(T entry);
 
     // Test for contents
-    public boolean contains(MyType entry);
+    public boolean contains(T entry);
 
     // Retrieves all entries in the bag and sends to new array
-    public MyType[] toArray();
+    public T[] toArray();
 
 
 
