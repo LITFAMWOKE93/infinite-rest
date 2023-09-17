@@ -37,7 +37,7 @@ public class BagTest {
         System.out.println("Contents of the shopping cart:");
         ShoppingItem[] items = cart.toArray();
         for (ShoppingItem item : items) {
-            System.out.println("Item: " + item.getProductName() + " | Price: $" + item.getPrice());
+            System.out.println("Customer ID: " + item.getCustomerID() + " Item: " + item.getProductName() + " | Price: $" + item.getPrice());
         }
     }
 
