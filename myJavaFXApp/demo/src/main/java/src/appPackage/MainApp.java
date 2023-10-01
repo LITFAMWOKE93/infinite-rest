@@ -34,6 +34,8 @@ public class MainApp extends Application {
 
     private static Color randGreen;
 
+    // APPLICATION CONSTRUCTOR
+
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Menus in Java");
@@ -94,18 +96,11 @@ public class MainApp extends Application {
 
         Scene scene = new Scene(root, 480, 556);
 
-
-    
-
-
-
-
-    
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    // FUNCTION DEFINITIONS FOR APPLICATION
 
     // setColor accesses the static color variable beloning to MainApp so the randomColor hue can be stored and persists across action events
     public static void setColor(Color color) {
@@ -144,6 +139,8 @@ public class MainApp extends Application {
         Color randomColor = Color.rgb(0, random.nextInt(256), 0);
         return randomColor;
     }
+
+    // PROGRAM EXECUTION
 
     public static void main(String[] args) {
         launch(args);
