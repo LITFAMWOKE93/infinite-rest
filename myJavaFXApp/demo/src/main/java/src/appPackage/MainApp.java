@@ -73,6 +73,7 @@ public class MainApp extends Application {
 
         MenuItem item4 = new MenuItem("Exit");
         item4.setOnAction(event -> {
+            System.out.println("Program exiting");
             primaryStage.close();
         });
 
@@ -121,6 +122,7 @@ public class MainApp extends Application {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = now.format(formatter);
         outputTextArea.setText(formattedDateTime);
+        System.out.println("Printing date and time");
     }
     // writeToFile creates a new buffered writer, gets the output text and writes it a file, returning an error if input is invalid and automatically closing when done
     private void writeToFile(TextArea outputTextArea) {
@@ -128,6 +130,8 @@ public class MainApp extends Application {
             writer.write(outputTextArea.getText());
             writer.newLine();
             writer.flush();
+
+            System.out.println("Writing to \"log.txt\"");
         } catch (IOException e) {
             e.printStackTrace();
         }
