@@ -58,6 +58,8 @@ public class MainApp extends Application {
         item1.setOnAction(event -> {
             printDateTime(outputTextArea);
         });
+        
+
 
         MenuItem item2 = new MenuItem("Write to log.txt");
         item2.setOnAction(event -> {
