@@ -6,31 +6,58 @@
 
 
 <AnchorPane id="AnchorPane" prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="csc.cap.FXMLController" >
-    <children>
+    <children>  
+
+
+        <!-- Buttons and layout for view panel for list -->
+        <Button layoutX="370.0" layoutY="20.0" onAction="#btnSubmitToField" text="Sort"/>
+        <Button layoutX="450.0" layoutY="20.0" onAction="#btnSubmitToField" text="Export"/>
+
+        <Pane layoutX="340.0" layoutY="40.0" prefHeight="440" prefWidth="200" style="-fx-background-color: lightgray; -fx-padding: 10px; -fx-background-radius: 10px;">
+            <ScrollPane layoutX="10.0" layoutY="30.0" prefHeight="400" prefWidth="180" style="-fx-padding: 10px;">
+            <content>
+                <!-- Content inside the ScrollPane goes here -->
+            </content>
+        </ScrollPane>
+        </Pane>
         
-        <Button layoutX="128.0" layoutY="107.0" onAction="#btnClickAction" text="Click Me!" />
+        
         <Label fx:id="lblOut" layoutX="53.0" layoutY="30.0" minHeight="16" minWidth="69" prefHeight="52.0" prefWidth="215.0" />
 
          <!-- First Input Field -->
-        <TextField layoutX="128.0" layoutY="180.0" prefWidth="150" promptText="Enter something"/>
+        
 
-        <HBox layoutX="53.0" layoutY="30.0">
+
+        <!-- Second Input Field -->
+        
+
+        <HBox layoutX="116.0" layoutY="180.0">
             <children>
                 <Label text="Student Name" styleClass="padded-label"  />
-                <TextField prefWidth="150" promptText="Enter something"/>
+                <TextField fx:id="inputField" prefWidth="100" promptText="Enter something else"/>
             </children>
         </HBox>
 
-        <!-- Second Input Field -->
-        <TextField layoutX="128.0" layoutY="230.0" prefWidth="150" promptText="Enter something else"/>
+        <HBox layoutX="116.0" layoutY="230.0">
+            <children>
+                <Label text="Student Address" styleClass="padded-label"  />
+                <TextField fx:id="inputField" prefWidth="100" promptText="Enter something"/>
+            </children>
+        </HBox>
 
-        <!-- Third Input Field -->
-        <TextField layoutX="128.0" layoutY="280.0" prefWidth="150" promptText="Enter another thing"/>
+        <HBox layoutX="116.0" layoutY="280.0">
+            <children>
+                <Label text="GPA" styleClass="padded-label"  />
+                <TextField fx:id="inputField" prefWidth="40" promptText="Enter something"/>
+            </children>
+        </HBox>
+
+        
 
         <!-- Second Button -->
-        <Button layoutX="128.0" layoutY="330.0" onAction="#btnSubmitToField" text="Submit"/>
+        <Button layoutX="116.0" layoutY="330.0" onAction="#btnSubmitToField" text="Submit"/>
 
         <!-- Third Button -->
-        <Button layoutX="128.0" layoutY="380.0" onAction="#btnSubmitToField" text="Reset"/>
+        <Button layoutX="116.0" layoutY="380.0" onAction="#btnClearFields" text="Reset"/>
     </children>
 </AnchorPane>
