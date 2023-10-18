@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+<AnchorPane id="AnchorPane" prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="csc.cap.FXMLController" >
+    <children>
+        
+        <Button layoutX="128.0" layoutY="107.0" onAction="#btnClickAction" text="Click Me!" />
+        <Label fx:id="lblOut" layoutX="53.0" layoutY="30.0" minHeight="16" minWidth="69" prefHeight="52.0" prefWidth="215.0" />
+
+         <!-- First Input Field -->
+        <TextField layoutX="128.0" layoutY="180.0" prefWidth="150" promptText="Enter something"/>
+
+        <HBox layoutX="53.0" layoutY="30.0">
+            <children>
+                <Label text="Student Name" styleClass="padded-label"  />
+                <TextField prefWidth="150" promptText="Enter something"/>
+            </children>
+        </HBox>
+
+        <!-- Second Input Field -->
+        <TextField layoutX="128.0" layoutY="230.0" prefWidth="150" promptText="Enter something else"/>
+
+        <!-- Third Input Field -->
+        <TextField layoutX="128.0" layoutY="280.0" prefWidth="150" promptText="Enter another thing"/>
+
+        <!-- Second Button -->
+        <Button layoutX="128.0" layoutY="330.0" onAction="#btnSubmitToField" text="Submit"/>
+
+        <!-- Third Button -->
+        <Button layoutX="128.0" layoutY="380.0" onAction="#btnSubmitToField" text="Reset"/>
+    </children>
+</AnchorPane>
