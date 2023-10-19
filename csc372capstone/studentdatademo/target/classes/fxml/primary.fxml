@@ -11,7 +11,7 @@
 
         <!-- Buttons and layout for display panel for list -->
         <Button fx:id="sortButton" layoutX="370.0" layoutY="20.0" onAction="#btnSubmitToField" text="Sort"/>
-        <Button layoutX="450.0" layoutY="20.0" onAction="#btnSubmitToField" text="Export"/>
+        <Button fx:id="exportButton" layoutX="450.0" layoutY="20.0" onAction="#btnSubmitToField" text="Export"/>
 
         <Pane layoutX="340.0" layoutY="40.0" prefHeight="440" prefWidth="280" style="-fx-background-color: lightgray; -fx-padding: 10px; -fx-background-radius: 10px;">
             <Label layoutX="350.0" layoutY="40.0" text="Name:    Address:    GPA:   "/>

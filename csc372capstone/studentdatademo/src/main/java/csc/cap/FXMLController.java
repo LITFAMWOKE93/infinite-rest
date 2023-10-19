@@ -14,21 +14,23 @@ import java.util.regex.Pattern;
 
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.StringProperty;
 
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
+
+
 
 
 
@@ -50,6 +52,8 @@ public class FXMLController implements Initializable {
     private Button resetButton;
     @FXML
     private Button sortButton;
+    @FXML
+    private Button exportButton;
     @FXML
     private ScrollPane displayPane;
 
@@ -95,6 +99,7 @@ public class FXMLController implements Initializable {
         resetButton.setOnAction(event -> clearTextFields());
         submitButton.setOnAction(event -> createStudentFromInput());
         sortButton.setOnAction(event -> sortAscending());
+        exportButton.setOnAction(event -> writeListToFile());
 
 
         // String formatter filters for Regex
@@ -137,6 +142,31 @@ public class FXMLController implements Initializable {
         studentAddressField.clear();
         gradeField.clear();
     }
+    
+// send the linkedList of student objects in sorted format to a standard .txt file
+    private void writeListToFile(){
+        // ensure list is sorted
+        studentList.sort(new NameCompare());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("enrolledstudents.txt"))) {
+            // Iterate through the studentList and write each student's information to the file
+            for (Student student : studentList) {
+                writer.write(student.toString());
+                writer.newLine(); // Add a newline separator between students
+            }
+
+            System.out.println("Data exported successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+    
 
 // Create a new student object from the input data and insert it into the linkedList structure
 
