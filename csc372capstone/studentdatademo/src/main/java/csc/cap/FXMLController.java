@@ -37,7 +37,7 @@ public class FXMLController implements Initializable {
     @FXML
     private TextField studentAddressField;
     @FXML
-    private LinkedList<Student> linkedList = new LinkedList<>();
+    private LinkedList<Student> studentList = new LinkedList<>();
     @FXML
     private Button submitButton;
     @FXML
@@ -118,6 +118,13 @@ public class FXMLController implements Initializable {
         double grade = Double.parseDouble(stringGPA);
 
         Student newStudent = new Student(name, address, grade);
+
+        // Add student to linked list structure
+
+        studentList.add(newStudent);
+
+        clearTextFields();
+        System.out.printf("Student Created", newStudent.toString());
     }
 
 

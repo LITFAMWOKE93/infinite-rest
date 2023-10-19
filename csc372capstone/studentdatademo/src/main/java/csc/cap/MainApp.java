@@ -39,7 +39,6 @@ public class MainApp extends Application {
         stage.setScene(scene);
 
 
-        // controller.toggleSubmitDisable(true);
         stage.show();
     }
    
