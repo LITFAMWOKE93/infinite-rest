@@ -12,6 +12,7 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -25,6 +26,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+
+
 
 public class FXMLController implements Initializable {
     
@@ -42,12 +48,24 @@ public class FXMLController implements Initializable {
     private Button submitButton;
     @FXML
     private Button resetButton;
+    @FXML
+    private Button sortButton;
+    @FXML
+    private ScrollPane displayPane;
 
     
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        // Init enter key assignment to simulate mouse click for submitButton
+
+        studentNameField.setOnKeyPressed(this::handleEnterKeyPress);
+        studentAddressField.setOnKeyPressed(this::handleEnterKeyPress);
+        gradeField.setOnKeyPressed(this::handleEnterKeyPress);
+
+
         // Regex pattern for allowing only alpha characters into the ftext fields.
         Pattern pattern = Pattern.compile("[a-zA-Z ]*");
         Pattern gpaPattern = Pattern.compile("^([0-4](\\.\\d{0,2})?)?$");
@@ -76,6 +94,7 @@ public class FXMLController implements Initializable {
 
         resetButton.setOnAction(event -> clearTextFields());
         submitButton.setOnAction(event -> createStudentFromInput());
+        sortButton.setOnAction(event -> sortAscending());
 
 
         // String formatter filters for Regex
@@ -91,13 +110,26 @@ public class FXMLController implements Initializable {
         studentNameField.textProperty(), studentAddressField.textProperty(), gradeField.textProperty()));
     }
 
+    @FXML
+    private void handleEnterKeyPress(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            // Simulate a button click event when Enter key is pressed
+            submitButton.fire();
+        }
+    }
+
     
 // Return the true/false content of the inputFields
     private boolean allInputsFilled() {
 
-        return !(studentAddressField.getText().isEmpty() && studentNameField.getText().isEmpty()  && gradeField.getText().isEmpty()) ;
+        return !(studentAddressField.getText().isEmpty() || studentNameField.getText().isEmpty()  || gradeField.getText().isEmpty()) ;
     }
 
+    private void sortAscending() {
+        studentList.sort(new NameCompare());
+
+        updateScrollPaneContent();
+    }
 // clearTextFields is a list of TextFields that will be emptied when clicking resetButton
     private void clearTextFields() {
 
@@ -114,6 +146,10 @@ public class FXMLController implements Initializable {
         String address = studentAddressField.getText();
         String stringGPA = gradeField.getText();
 
+        System.out.println(name);
+        System.out.println(address);
+        System.out.println(stringGPA);
+
 
         double grade = Double.parseDouble(stringGPA);
 
@@ -123,8 +159,26 @@ public class FXMLController implements Initializable {
 
         studentList.add(newStudent);
 
+        updateScrollPaneContent();
+
         clearTextFields();
+        studentNameField.requestFocus();
         System.out.printf("Student Created", newStudent.toString());
+    }
+
+    private void updateScrollPaneContent() {
+        // vbox organizes the content vertically for the ScrollPane
+        VBox content = new VBox(); 
+
+        // Enhanced loop through linkedList and create labels for each
+
+        for(Student student : studentList ) {
+            Label studentLabel = new Label(student.toString());
+            content.getChildren().add(studentLabel);
+        }
+
+        displayPane.setContent(content);
+
     }
 
 

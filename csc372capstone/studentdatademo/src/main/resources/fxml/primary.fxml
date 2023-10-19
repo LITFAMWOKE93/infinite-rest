@@ -9,14 +9,15 @@
     <children>  
 
 
-        <!-- Buttons and layout for view panel for list -->
-        <Button layoutX="370.0" layoutY="20.0" onAction="#btnSubmitToField" text="Sort"/>
+        <!-- Buttons and layout for display panel for list -->
+        <Button fx:id="sortButton" layoutX="370.0" layoutY="20.0" onAction="#btnSubmitToField" text="Sort"/>
         <Button layoutX="450.0" layoutY="20.0" onAction="#btnSubmitToField" text="Export"/>
 
-        <Pane layoutX="340.0" layoutY="40.0" prefHeight="440" prefWidth="200" style="-fx-background-color: lightgray; -fx-padding: 10px; -fx-background-radius: 10px;">
-            <ScrollPane layoutX="10.0" layoutY="30.0" prefHeight="400" prefWidth="180" style="-fx-padding: 10px;">
+        <Pane layoutX="340.0" layoutY="40.0" prefHeight="440" prefWidth="280" style="-fx-background-color: lightgray; -fx-padding: 10px; -fx-background-radius: 10px;">
+            <Label layoutX="350.0" layoutY="40.0" text="Name:    Address:    GPA:   "/>
+            <ScrollPane fx:id="displayPane" layoutX="10.0" layoutY="30.0" prefHeight="400" prefWidth="260" style="-fx-padding: 10px;">
             <content>
-                <!-- Content inside the ScrollPane goes here -->
+                <!-- Content will be updated dynamically as student objects are created -->
             </content>
         </ScrollPane>
         </Pane>
@@ -24,13 +25,8 @@
         
         <Label fx:id="lblOut" layoutX="53.0" layoutY="30.0" minHeight="16" minWidth="69" prefHeight="52.0" prefWidth="215.0" />
 
-         <!-- First Input Field -->
-        
-
-
-        <!-- Second Input Field -->
-        
-
+    
+        <!-- Interactive UI elements -->
         <HBox layoutX="116.0" layoutY="180.0">
             <children>
                 <Label text="Student Name" styleClass="padded-label"  />

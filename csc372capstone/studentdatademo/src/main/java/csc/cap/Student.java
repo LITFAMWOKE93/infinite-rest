@@ -51,11 +51,11 @@ public class Student {
     // Override toString() method
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", GPA=" + GPA +
-                '}';
+        return
+                name +
+                ", " + address + 
+                ", " + GPA 
+                ;
     }
 
     
