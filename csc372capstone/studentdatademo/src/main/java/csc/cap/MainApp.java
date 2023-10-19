@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 
 public class MainApp extends Application {
@@ -16,6 +17,9 @@ public class MainApp extends Application {
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
         setRoot("primary","Student Enrollment Manager");
+
+        
+        
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -23,23 +27,29 @@ public class MainApp extends Application {
     }
 
     static void setRoot(String fxml, String title) throws IOException {
-        Scene scene = new Scene(loadFXML(fxml));
-
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+fxml + ".fxml"));
+        Parent root = fxmlLoader.load();
+        FXMLController controller = fxmlLoader.getController();
+        
+        
+    
+        Scene scene = new Scene(root);
         scene.getStylesheets().add("styles.css");
         stage.setTitle(title);
         stage.setScene(scene);
+
+
+        // controller.toggleSubmitDisable(true);
         stage.show();
     }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
+   
     
 
 
     public static void main(String[] args) {
+
         launch(args);
     }
+
 
 }
