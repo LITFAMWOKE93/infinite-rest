@@ -34,21 +34,21 @@
         <HBox layoutX="116.0" layoutY="180.0">
             <children>
                 <Label text="Student Name" styleClass="padded-label"  />
-                <TextField fx:id="inputField" prefWidth="100" promptText=". . ."/>
+                <TextField fx:id="studentNameField" prefWidth="100" promptText=". . ."/>
             </children>
         </HBox>
 
         <HBox layoutX="116.0" layoutY="230.0">
             <children>
                 <Label text="Student Address" styleClass="padded-label"  />
-                <TextField fx:id="inputField" prefWidth="100" promptText=". . ."/>
+                <TextField fx:id="studentAddressField" prefWidth="100" promptText=". . ."/>
             </children>
         </HBox>
 
         <HBox layoutX="116.0" layoutY="280.0">
             <children>
                 <Label text="GPA" styleClass="padded-label"  />
-                <TextField fx:id="inputField" prefWidth="40" promptText=". . ."/>
+                <TextField fx:id="gradeField" prefWidth="40" promptText=". . ."/>
             </children>
         </HBox>
 
@@ -58,6 +58,6 @@
         <Button fx:id="submitButton" layoutX="116.0" layoutY="330.0" onAction="#btnSubmitToField" text="Submit"/>
 
         <!-- Third Button -->
-        <Button layoutX="116.0" layoutY="380.0" onAction="#btnClearFields" text="Reset"/>
+        <Button fx:id="resetButton" layoutX="116.0" layoutY="380.0"  text="Reset"/>
     </children>
 </AnchorPane>

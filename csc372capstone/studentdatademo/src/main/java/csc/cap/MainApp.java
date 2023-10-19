@@ -29,7 +29,7 @@ public class MainApp extends Application {
     static void setRoot(String fxml, String title) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+fxml + ".fxml"));
         Parent root = fxmlLoader.load();
-        FXMLController controller = fxmlLoader.getController();
+       
         
         
     
