@@ -3,7 +3,7 @@ package csc400cap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class OrderSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Display display = new Display();
