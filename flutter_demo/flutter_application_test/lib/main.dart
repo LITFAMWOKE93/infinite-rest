@@ -136,33 +136,31 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-class MyDropdownWidget extends StatelessWidget {
-  final ValueNotifier<String> selectedValue = ValueNotifier<String>('Option 1');
-  final List<String> options = ['Option 1', 'Option 2', 'Option 3'];
+class ActivityLevelDropDown extends StatefulWidget {
+  @override
+  _ActivityLevelDropDownState createState() => _ActivityLevelDropDownState();
+}
+
+class _ActivityLevelDropDownState extends State<ActivityLevelDropDown> {
+  ActivityLevel _selectedActivityLevel = ActivityLevel.light;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dropdown Menu Example'),
-      ),
       body: Center(
-        child: ValueListenableBuilder<String>(
-          valueListenable: selectedValue,
-          builder: (context, value, child) {
-            return DropdownButton<String>(
-              value: value,
-              onChanged: (newValue) {
-                selectedValue.value = newValue!;
-              },
-              items: options.map((String option) {
-                return DropdownMenuItem<String>(
-                  value: option,
-                  child: Text(option),
-                );
-              }).toList(),
-            );
+        child: DropdownButton<ActivityLevel>(
+          value: _selectedActivityLevel,
+          onChanged: (ActivityLevel? newValue) {
+            setState(() {
+              _selectedActivityLevel = newValue as ActivityLevel;
+            });
           },
+          items: ActivityLevel.values.map((ActivityLevel level) {
+            return DropdownMenuItem<ActivityLevel>(
+              value: level,
+              child: Text(level.toString().split('.').last),
+            );
+          }).toList(),
         ),
       ),
     );
@@ -245,6 +243,7 @@ class MyHomePage extends StatelessWidget {
             decoration: InputDecoration(labelText: 'Height (cm)'),
           ),
           GenderSelectionRadial(),
+          ActivityLevelDropDown(),
           ElevatedButton(
             onPressed: () {
               // Parse user input and set data
