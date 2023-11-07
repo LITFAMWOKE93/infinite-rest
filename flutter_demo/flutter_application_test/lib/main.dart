@@ -243,7 +243,9 @@ class MyHomePage extends StatelessWidget {
             decoration: InputDecoration(labelText: 'Height (cm)'),
           ),
           GenderSelectionRadial(),
-          ActivityLevelDropDown(),
+          Flexible(
+            child: ActivityLevelDropDown(),
+          ),
           ElevatedButton(
             onPressed: () {
               // Parse user input and set data
