@@ -259,10 +259,13 @@ class MyHomePage extends StatelessWidget {
 
               // Calculate TDEE
               double tdee = appState.calculateTDEE();
+              int roundedtdee = tdee.round();
 
               // Display the calculated TDEE
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Calculated TDEE: $tdee')),
+                SnackBar(
+                    content:
+                        Text('Your daily maintenance calories: $roundedtdee')),
               );
             },
             child: Text('Calculate'),
